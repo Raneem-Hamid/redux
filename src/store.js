@@ -16,15 +16,31 @@ const initState = {
               accountNumber: "987654",
               accountType: "Student accounts"
             }
-    ]
+    ],
+
+    numberOfAccounts :2
  
 }
 
 
 
 const reduser = (state=initState,action)=>{
-    return state;
-}
+    switch (action.type) {
+        case "ADD_USER":
+            return {
+              ...state,
+              accounts: [...state.accounts, action.payload],
+            };
+        }
+        return state;
+};
+
+export const propsToState = (props) => {
+    return {
+      accounts: props.accounts,
+      counter: props.counter,
+    };
+  };
 
 const store =createStore(reduser);
 
